@@ -12,7 +12,8 @@ namespace Contacts
         public string Name;
         public DateOnly DOB;
         public string Email;
-        public string[] personalDetails = new string[4];
+        public string PhoneNumber;
+        public string[] personalDetails = new string[5];
         
 
         public Contact(string name, DateOnly dob, string email)
@@ -21,14 +22,29 @@ namespace Contacts
             DOB = dob;
             Email = email;
         }
-        
+        public Contact(string name, DateOnly dob, string email, string telephone)
+        {
+            Name = name;
+            DOB = dob;
+            Email = email;
+            PhoneNumber = telephone;
+        }
+
         public void addDetails()
         {
             string dateofBirth = Convert.ToString(DOB);
             personalDetails.SetValue(value: Name, index: 0);
             personalDetails.SetValue(value: dateofBirth, index: 1);
             personalDetails.SetValue(value: Email, index: 2);
-            personalDetails.SetValue(value: "____________", index: 3);
+            if (PhoneNumber != null || PhoneNumber != "")
+            {
+                personalDetails.SetValue(value: PhoneNumber, index: 3);
+            }
+            else
+            {
+                personalDetails.SetValue(value:"No Telephone Number", index: 3);
+            }
+            personalDetails.SetValue(value: "____________", index: 4);
 
         }
 

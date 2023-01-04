@@ -14,11 +14,19 @@ var ContactList = new List<string>();
 foreach(string Contact in ContactDetails) 
 {
     string[] ParsedContact = Contact.Split('\t');
-    Contact Person = new Contact(ParsedContact[0], DateOnly.Parse(ParsedContact[1]), ParsedContact[2]);
-    Person.addDetails();
-    ContactList.AddRange(Person.personalDetails);
+    if(ParsedContact.Length == 3)
+    {
+        Contact Person = new Contact(ParsedContact[0], DateOnly.Parse(ParsedContact[1]), ParsedContact[2]);
+        Person.addDetails();
+        ContactList.AddRange(Person.personalDetails);
+    }
+    else if(ParsedContact.Length == 4)
+    {
+        Contact Person = new Contact(ParsedContact[0], DateOnly.Parse(ParsedContact[1]), ParsedContact[2], ParsedContact[3]);
+        Person.addDetails();
+        ContactList.AddRange(Person.personalDetails);
+    }
 }
-
 
 //run loop and print out all the details
 for (int i = 0; i < ContactList.Count; i++)
