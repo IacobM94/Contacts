@@ -15,7 +15,7 @@ namespace Contacts
         public string PhoneNumber;
         public string[] personalDetails = new string[5];
         
-
+        //constructors
         public Contact(string name, DateOnly dob, string email)
         {
             Name = name;
@@ -47,8 +47,5 @@ namespace Contacts
             personalDetails.SetValue(value: "____________", index: 4);
 
         }
-
-
-
     }
 }
