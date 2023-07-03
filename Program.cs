@@ -1,10 +1,16 @@
 ﻿using Contacts;
+using System;
+using System.IO;
 using System.Runtime.InteropServices;
 using static System.Net.Mime.MediaTypeNames;
 using System.Collections.Generic;
 
-//read .txt file & remove any blank or null results
-string[] contactDetails = System.IO.File.ReadAllLines(@"C:\dev\C# Projects\Contacts\docs\contacts.txt");
+//Read .txt file & remove any blank or null results. Code will find the text file relative to the project directory.
+string projectFolder = Directory.GetCurrentDirectory();
+string grandParentDirectory = Directory.GetParent(Directory.GetParent(Directory.GetParent(projectFolder).FullName).FullName).FullName;
+string filePath = Path.Combine(grandParentDirectory, @"docs\contacts.txt");
+string[] contactDetails = File.ReadAllLines(filePath);
+
 contactDetails = contactDetails.Where(x => !string.IsNullOrWhiteSpace(x)).ToArray();
 
 //create list of Contact objects
